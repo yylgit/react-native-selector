@@ -1,0 +1,35 @@
+{
+  "name": "react-native-select",
+  "version": "1.0.7",
+  "description": "select component for react-native",
+  "author": {
+    "name": "yangyiliang",
+    "email": "394720943@qq.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yylgit/react-native-select.git"
+  },
+  "keywords": [
+    "react-native",
+    "react-native-select"
+  ],
+  "main": "index.js",
+  "examples": [
+    "example/index.ios.js",
+    "example/index.android.js"
+  ],
+  "scripts": {
+    "start": "react-native start",
+    "clean:babelrc": "find ./node_modules -name react-packager -prune -o -name '.babelrc' -print | xargs rm -f",
+    "postinstall": "npm run clean:babelrc"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "react": "^15.3.0",
+    "react-native": "^0.32.0"
+  },
+  "dependencies": {
+    "react-native-vector-icons": "^3.0.0"
+  }
+}
