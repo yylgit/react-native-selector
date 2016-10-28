@@ -124,5 +124,5 @@ AppRegistry.registerComponent('react-native-select-index', () => testProject);
 ```
 
 # Screenshots
-![image description](http://mss.vip.sankuai.com/v1/mss_43af2378df554a1e8a6c9294ff1bc80a/zc/ae1a368eee8e472e95625259993c4003.jpg)
-![image description](http://mss.vip.sankuai.com/v1/mss_43af2378df554a1e8a6c9294ff1bc80a/zc/e970c2d4ced546f487adfb360030ac1c.jpg)
+![image description](//dn-cnode.qbox.me/FnmN1500bsL8w85dVfe5nj9V43wg)
+![image description](//dn-cnode.qbox.me/FpGX4AJ3G24YownZUBJM141PBvrx)
