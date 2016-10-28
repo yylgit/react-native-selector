@@ -22,7 +22,8 @@
   "scripts": {
     "start": "react-native start",
     "clean:babelrc": "find ./node_modules -name react-packager -prune -o -name '.babelrc' -print | xargs rm -f",
-    "postinstall": "npm run clean:babelrc"
+    "postinstall": "npm run clean:babelrc",
+    "postversion": "git push && git push --tag"
   },
   "license": "MIT",
   "devDependencies": {
