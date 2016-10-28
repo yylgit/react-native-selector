@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {isFunction} from '../utils';
+import {isFunction} from './utils';
 
 class Select extends Component {
 

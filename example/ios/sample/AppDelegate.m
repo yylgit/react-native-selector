@@ -42,7 +42,7 @@
 //   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
-                                                      moduleName:@"@mtfe/react-native-button-index"
+                                                      moduleName:@"react-native-select-index"
                                                initialProperties:nil
                                                    launchOptions:launchOptions];
 

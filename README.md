@@ -1,104 +1,109 @@
 # Install
 
 ```
-npm install react-native-flexible-button  --save
+npm install react-native-select  --save
 ```
-仓库地址： https://github.com/yylgit/react-native-flexible-button.git
+仓库地址： https://github.com/yylgit/react-native-select.git
 
 # API
 
 Props |Type| Description
 ---|---|---
-text | PropTypes.string | 按钮显示的文本，当按钮有子元素时，将覆盖text
-onPress | PropTypes.func |  传递点击事件
-size | PropTypes.string | 控制按钮的大小，可取的值为：xs、sm、default、lg，默认default
-type | PropTypes.string |  控制按钮的颜色，可取的值为：default、primary、success、info 、warning、danger、link、main，默认default
-activityIndicatorColor | PropTypes.string | 控制loading的颜色，默认white
-containerStyle | View.propTypes.style |  自定义按钮外层的样式
-textStyle | Text.propTypes.style | 自定义按钮文本的样式
-isLoading | PropTypes.bool |  是否在加载中的属性
-disabled | PropTypes.bool |  是否在disabled状态
-disabledContainerStyle | View.propTypes.style |  自定义disabled状态按钮外层的样式
-disabledTextStyle | Text.propTypes.style | 自定义disabled状态按钮文本的样式
-props |  | 可以指定任意TouchableOpacity的属性，都会透传过去，例如常用的onPressIn、onPressOut、onLongPress等等。
-children | string, number, React.Element,or array |  children指代button里的子节点，如果子节点是string或者number类型，则渲染在Text元素内，如果是array或者React.Element类型则直接渲染。
+optionsData | PropTypes.array | select的数据源
+onSelect | PropTypes.func |  选择事件，函数参数为选择的item
+selectedOption | PropTypes.object |  选中的item 
+topStyle | PropTypes.any | select的样式
+placeholder | PropTypes.string | select默认展示的文本，优先级大于选中的item
+
 
 # example
 ```
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ */
+'use strict';
 
 import React, { Component } from 'react';
-
 import {
+  AppRegistry,
   StyleSheet,
-  View,
-  Text
+  Text,
+  View
 } from 'react-native';
+import Select from '../index';
+const sellStatusOptions = [{name: '全部', value: -1}, {name: '售卖中', value: 0}, {name: '停止售卖', value: 1}];
+const stockOptions = [{name: '全部', value: -1}, {name: '单品库存告急', value: 0}, {name: '单品售罄', value: 1}];
 
-import Button from '@scfe/react-native-button';
-import Icon from 'react-native-vector-icons/FontAwesome';
-class TestButton extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.row}>
-      <Button size='lg' text="（大按钮）size='lg'" />
-        </View>
-        <View style={styles.row}>
-      <Button  text="（默认尺寸）" />
-        </View>
-        <View style={styles.row}>
-      <Button size='sm'   text="（小按钮) size='sm'" />
-        </View>
-        <View style={styles.row}>
-      <Button size='xs'   text="（超小尺寸) size='xs'" />
-        </View>
-        <View style={styles.row}>
-      <Button type="default"  text="（默认样式）type=default" />
-        </View>
-        <View style={styles.row}>
-      <Button type="primary"  text="（首选项）type=type=primary" />
-        </View>
-        <View style={styles.row}>
-      <Button type="success"  text="（成功）type=success" />
-        </View>
-        <View style={styles.row}>
-      <Button type="info"  text="（一般信息）type=info" />
-        </View>
-        <View style={styles.row}>
-      <Button type="warning"  text="（警告）type=warning" />
-        </View>
-        <View style={styles.row}>
-      <Button type="danger"  text="（危险）type=danger" />
-        </View>
-        <View style={styles.row}>
-      <Button type="main"  text="（美团色）type=main" />
-        </View>
-        <View style={styles.row}>
-      <Button  type="link" text="（链接）Link" />
-        </View>
-        <View style={styles.row}>
-      <Button  disabled={true} text="disabled" />
-        </View>
-        <View style={styles.row}>
-      <Button  isLoading={true} activityIndicatorColor="black" text="loading" />
-        </View>
-        <View style={styles.row}>
-      <Button type="danger" isLoading={true}  text="loading" />
-        </View>
-
-
-        <View style={styles.row}>
-          <Button>
-            <View style={{flexDirection: 'row'}}>
-              <Icon name={"desktop"} size={18} color='#000'/>
-              <Text style={{marginLeft: 5}}>自定义内容</Text>
-            </View>
-          </Button>
-        </View>
-
-      </View>
-    );
+class testProject extends Component {
+  constructor(props) {
+    super(props);
+  
+    this.state = {
+      sellStatus: {name: '全部', value: -1},
+      stockStatus: {name: '全部', value: -1},
+      sellStatusPlaceHolder: '售卖状态',
+      stockPlaceHolder: '库存状态'
+    };
   }
+
+  _selectSellStatus(item) {
+      this.setState({
+          sellStatus: item,
+          sellStatusPlaceHolder: ''
+      });
+  }
+
+  _selectStockStatus(item) {
+      this.setState({
+          stockStatus: item,
+          stockPlaceHolder: ''
+      });
+  }
+
+
+  _renderSelect() {
+      let {
+          sellStatus, stockStatus,
+          sellStatusPlaceHolder,
+          stockPlaceHolder
+      } = this.state;
+      return (
+          <View style={styles.selectWrapper}>
+              <Select
+                  ref={view=>{this.sellStatusSelect = view }}
+                  optionsData={sellStatusOptions}
+                  selectedOption={sellStatus}
+                  onSelect={this._selectSellStatus.bind(this)}
+                  topStyle={{borderRightWidth: 0}}
+                  placeholder={sellStatusPlaceHolder}
+              />
+              <Select
+                  ref={view=>{this.stockSelect = view }}
+                  optionsData={stockOptions}
+                  selectedOption={stockStatus}
+                  onSelect={this._selectStockStatus.bind(this)}
+                  placeholder={stockPlaceHolder}
+              />
+          </View>
+      );
+  }
+
+  _onStartShouldSetResponderCapture() {
+      this.sellStatusSelect.close();
+      this.stockSelect.close();
+      return false;
+  }
+
+  render() {
+      return (
+        <View style={styles.container}>
+          {this._renderSelect()}
+          <View style={{flex: 1}} onStartShouldSetResponderCapture={this._onStartShouldSetResponderCapture.bind(this)}>
+          </View>
+        </View>
+      );
+    }
 }
 
 const styles = StyleSheet.create({
@@ -108,63 +113,16 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10
   },
-  row: {
-    marginTop: 5
+  selectWrapper: {
+      flexDirection: 'row',
+      zIndex: 1000
   }
 });
 
-export default TestButton;
+AppRegistry.registerComponent('react-native-select-index', () => testProject);
+
 ```
 
 # Screenshots
-![image description](https://dn-cnode.qbox.me/FiFVHd2_hOui1yCvp7FExm4Avj_l)
-
-
-# 使用RT开发组件
-[使用rt工具开发React Native组件](http://wiki.sankuai.com/pages/viewpage.action?pageId=385700255)
-###### 使用rt生成的RN版本较低，需要升级React-Native
-这里升级成如下版本
-```
-"dependencies": {
-    "react": "15.3.0",
-    "react-native": "0.32.0"
-  }
-```
-###### 升级后，直接运行如果build fail
-
-解决办法：
-
-TARGETS->Build Settings->Link->Other Linker Flags 下添加```-lc++```
-
-![image description](https://dn-cnode.qbox.me/FpUE0fSbBC0w-noGfDH6GkIUTH46)
-
-如果遇到js报错,是babel的原因
-![image description](https://dn-cnode.qbox.me/FoFhkNifOs27zELbrriop8kk0bRk)
-```
-transforming [========================================] 100% 399/400Error while persisting cache: TransformError: /Users/zzx/MyProject/node_modules/react-deep-force-update/lib/index.js: [BABEL] /Users/zzx/MyProject/node_modules/react-deep-force-update/lib/index.js: Unknown option: /Users/zzx/MyProject/node_modules/react-deep-force-update/.babelrc.stage
-```
-
-原因：
-新版本用的是babel 6版本，可是有些依赖的库并不是这个版本，就会导致这个错，所以解决方案就是把babel删了，升级依赖。
-
-解决方法：
-
-尝试1：
-
-手动删除/Users/zzx/MyProject/node_modules/react-deep-force-update/.babelrc 然后重启就解决了
-
-尝试2：
-
-修改package.json文件 
-
-    "scripts": {
-      "clean:babelrc": "find ./node_modules -name react-packager -prune -o -name '.babelrc' -print | xargs rm -f",
-      "postinstall": "npm run clean:babelrc"
-    }
-删除依赖重新安装
-
-    rm -rf node_modules
-    npm install
-
-
-    
+![image description](http://mss.vip.sankuai.com/v1/mss_43af2378df554a1e8a6c9294ff1bc80a/zc/ae1a368eee8e472e95625259993c4003.jpg)
+![image description](http://mss.vip.sankuai.com/v1/mss_43af2378df554a1e8a6c9294ff1bc80a/zc/e970c2d4ced546f487adfb360030ac1c.jpg)
