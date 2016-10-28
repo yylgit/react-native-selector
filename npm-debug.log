@@ -1,30 +1,114 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/local/bin/node',
-1 verbose cli   '/usr/local/bin/npm',
-1 verbose cli   'version',
-1 verbose cli   'patch' ]
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'publish' ]
 2 info using npm@3.10.6
 3 info using node@v4.2.2
-4 info git [ 'status', '--porcelain' ]
-5 verbose stack Error: Git working directory not clean.
-5 verbose stack M package.json
-5 verbose stack     at /usr/local/lib/node_modules/npm/lib/version.js:247:19
-5 verbose stack     at /usr/local/lib/node_modules/npm/lib/utils/no-progress-while-running.js:21:8
-5 verbose stack     at ChildProcess.exithandler (child_process.js:194:7)
-5 verbose stack     at emitTwo (events.js:87:13)
-5 verbose stack     at ChildProcess.emit (events.js:172:7)
-5 verbose stack     at maybeClose (internal/child_process.js:818:16)
-5 verbose stack     at Socket.<anonymous> (internal/child_process.js:319:11)
-5 verbose stack     at emitOne (events.js:77:13)
-5 verbose stack     at Socket.emit (events.js:169:7)
-5 verbose stack     at Pipe._onclose (net.js:469:12)
-6 verbose cwd /Users/yyl/meituan/work/yyl/github/react-native-select
-7 error Darwin 15.6.0
-8 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "version" "patch"
-9 error node v4.2.2
-10 error npm  v3.10.6
-11 error Git working directory not clean.
-11 error M package.json
-12 error If you need help, you may report this error at:
-12 error     <https://github.com/npm/npm/issues>
-13 verbose exit [ 1, true ]
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   escapedName: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/Users/yyl/meituan/work/yyl/github/react-native-select',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/yyl/.npm/react-native-select/1.0.1/package.tgz not in flight; packing
+9 verbose correctMkdir /Users/yyl/.npm correctMkdir not in flight; initializing
+10 info lifecycle react-native-select@1.0.1~prepublish: react-native-select@1.0.1
+11 silly lifecycle react-native-select@1.0.1~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ '/Users/yyl/.npm/react-native-select/1.0.1/package.tgz',
+12 verbose tar pack   '/Users/yyl/meituan/work/yyl/github/react-native-select' ]
+13 verbose tarball /Users/yyl/.npm/react-native-select/1.0.1/package.tgz
+14 verbose folder /Users/yyl/meituan/work/yyl/github/react-native-select
+15 verbose addLocalTarball adding from inside cache /Users/yyl/.npm/react-native-select/1.0.1/package.tgz
+16 verbose correctMkdir /Users/yyl/.npm correctMkdir not in flight; initializing
+17 silly cache afterAdd react-native-select@1.0.1
+18 verbose afterAdd /Users/yyl/.npm/react-native-select/1.0.1/package/package.json not in flight; writing
+19 verbose correctMkdir /Users/yyl/.npm correctMkdir not in flight; initializing
+20 verbose afterAdd /Users/yyl/.npm/react-native-select/1.0.1/package/package.json written
+21 silly publish { name: 'react-native-select',
+21 silly publish   version: '1.0.1',
+21 silly publish   description: 'select component for react-native',
+21 silly publish   author: { name: 'yangyiliang', email: '394720943@qq.com' },
+21 silly publish   repository:
+21 silly publish    { type: 'git',
+21 silly publish      url: 'git+https://github.com/yylgit/react-native-select.git' },
+21 silly publish   keywords: [ 'react-native', 'react-native-select' ],
+21 silly publish   main: 'index.js',
+21 silly publish   examples: [ 'example/index.ios.js', 'example/index.android.js' ],
+21 silly publish   scripts:
+21 silly publish    { start: 'react-native start',
+21 silly publish      'clean:babelrc': 'find ./node_modules -name react-packager -prune -o -name \'.babelrc\' -print | xargs rm -f',
+21 silly publish      postinstall: 'npm run clean:babelrc',
+21 silly publish      postversion: 'git push && git push --tag' },
+21 silly publish   license: 'MIT',
+21 silly publish   devDependencies: { react: '^15.3.0', 'react-native': '^0.32.0' },
+21 silly publish   dependencies: { 'react-native-vector-icons': '^3.0.0' },
+21 silly publish   readme: '# Install\n\n```\nnpm install react-native-select  --save\n```\n仓库地址： https://github.com/yylgit/react-native-select.git\n\n# API\n\nProps |Type| Description\n---|---|---\noptionsData | PropTypes.array | select的数据源\nonSelect | PropTypes.func |  选择事件，函数参数为选择的item\nselectedOption | PropTypes.object |  选中的item \ntopStyle | PropTypes.any | select的样式\nplaceholder | PropTypes.string | select默认展示的文本，优先级大于选中的item\n\n\n# example\n```\n/**\n * Sample React Native App\n * https://github.com/facebook/react-native\n */\n\'use strict\';\n\nimport React, { Component } from \'react\';\nimport {\n  AppRegistry,\n  StyleSheet,\n  Text,\n  View\n} from \'react-native\';\nimport Select from \'../index\';\nconst sellStatusOptions = [{name: \'全部\', value: -1}, {name: \'售卖中\', value: 0}, {name: \'停止售卖\', value: 1}];\nconst stockOptions = [{name: \'全部\', value: -1}, {name: \'单品库存告急\', value: 0}, {name: \'单品售罄\', value: 1}];\n\nclass testProject extends Component {\n  constructor(props) {\n    super(props);\n  \n    this.state = {\n      sellStatus: {name: \'全部\', value: -1},\n      stockStatus: {name: \'全部\', value: -1},\n      sellStatusPlaceHolder: \'售卖状态\',\n      stockPlaceHolder: \'库存状态\'\n    };\n  }\n\n  _selectSellStatus(item) {\n      this.setState({\n          sellStatus: item,\n          sellStatusPlaceHolder: \'\'\n      });\n  }\n\n  _selectStockStatus(item) {\n      this.setState({\n          stockStatus: item,\n          stockPlaceHolder: \'\'\n      });\n  }\n\n\n  _renderSelect() {\n      let {\n          sellStatus, stockStatus,\n          sellStatusPlaceHolder,\n          stockPlaceHolder\n      } = this.state;\n      return (\n          <View style={styles.selectWrapper}>\n              <Select\n                  ref={view=>{this.sellStatusSelect = view }}\n                  optionsData={sellStatusOptions}\n                  selectedOption={sellStatus}\n                  onSelect={this._selectSellStatus.bind(this)}\n                  topStyle={{borderRightWidth: 0}}\n                  placeholder={sellStatusPlaceHolder}\n              />\n              <Select\n                  ref={view=>{this.stockSelect = view }}\n                  optionsData={stockOptions}\n                  selectedOption={stockStatus}\n                  onSelect={this._selectStockStatus.bind(this)}\n                  placeholder={stockPlaceHolder}\n              />\n          </View>\n      );\n  }\n\n  _onStartShouldSetResponderCapture() {\n      this.sellStatusSelect.close();\n      this.stockSelect.close();\n      return false;\n  }\n\n  render() {\n      return (\n        <View style={styles.container}>\n          {this._renderSelect()}\n          <View style={{flex: 1}} onStartShouldSetResponderCapture={this._onStartShouldSetResponderCapture.bind(this)}>\n          </View>\n        </View>\n      );\n    }\n}\n\nconst styles = StyleSheet.create({\n  container: {\n    flex: 1,\n    paddingTop: 20,\n    paddingLeft: 10,\n    paddingRight: 10\n  },\n  selectWrapper: {\n      flexDirection: \'row\',\n      zIndex: 1000\n  }\n});\n\nAppRegistry.registerComponent(\'react-native-select-index\', () => testProject);\n\n```\n\n# Screenshots\n![image description](https://dn-cnode.qbox.me/FnmN1500bsL8w85dVfe5nj9V43wg)\n![image description](https://dn-cnode.qbox.me/FpGX4AJ3G24YownZUBJM141PBvrx)',
+21 silly publish   readmeFilename: 'README.md',
+21 silly publish   gitHead: '3053b8436d85807a1df09317a59d0f8c8f99d2b2',
+21 silly publish   bugs: { url: 'https://github.com/yylgit/react-native-select/issues' },
+21 silly publish   homepage: 'https://github.com/yylgit/react-native-select#readme',
+21 silly publish   _id: 'react-native-select@1.0.1',
+21 silly publish   _shasum: '32e985b09a600ec3c4b6d5a8dbd711d73784fdb8',
+21 silly publish   _from: '.' }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name react-native-select
+24 silly mapToRegistry using default registry
+25 silly mapToRegistry registry https://registry.npmjs.org/
+26 silly mapToRegistry data Result {
+26 silly mapToRegistry   raw: 'react-native-select',
+26 silly mapToRegistry   scope: null,
+26 silly mapToRegistry   escapedName: 'react-native-select',
+26 silly mapToRegistry   name: 'react-native-select',
+26 silly mapToRegistry   rawSpec: '',
+26 silly mapToRegistry   spec: 'latest',
+26 silly mapToRegistry   type: 'tag' }
+27 silly mapToRegistry uri https://registry.npmjs.org/react-native-select
+28 verbose publish registryBase https://registry.npmjs.org/
+29 silly publish uploading /Users/yyl/.npm/react-native-select/1.0.1/package.tgz
+30 verbose request uri https://registry.npmjs.org/react-native-select
+31 verbose request sending authorization for write operation
+32 info attempt registry request try #1 at 16:25:06
+33 verbose request using bearer token for auth
+34 verbose request id 1163babb0c78ad2a
+35 http request PUT https://registry.npmjs.org/react-native-select
+36 http 403 https://registry.npmjs.org/react-native-select
+37 verbose headers { 'content-type': 'application/json',
+37 verbose headers   'cache-control': 'max-age=300',
+37 verbose headers   'content-length': '113',
+37 verbose headers   'accept-ranges': 'bytes',
+37 verbose headers   date: 'Fri, 28 Oct 2016 08:25:04 GMT',
+37 verbose headers   via: '1.1 varnish',
+37 verbose headers   connection: 'keep-alive',
+37 verbose headers   'x-served-by': 'cache-itm7425-ITM',
+37 verbose headers   'x-cache': 'MISS',
+37 verbose headers   'x-cache-hits': '0',
+37 verbose headers   'x-timer': 'S1477643103.369125,VS0,VE1419',
+37 verbose headers   vary: 'Accept-Encoding' }
+38 verbose request invalidating /Users/yyl/.npm/registry.npmjs.org/react-native-select on PUT
+39 error publish Failed PUT 403
+40 verbose stack Error: you do not have permission to publish "react-native-select". Are you logged in as the correct user? : react-native-select
+40 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+40 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:252:14)
+40 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+40 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:200:22)
+40 verbose stack     at emitTwo (events.js:87:13)
+40 verbose stack     at Request.emit (events.js:172:7)
+40 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1067:10)
+40 verbose stack     at emitOne (events.js:82:20)
+40 verbose stack     at Request.emit (events.js:169:7)
+40 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:988:12)
+41 verbose statusCode 403
+42 verbose pkgid react-native-select
+43 verbose cwd /Users/yyl/meituan/work/yyl/github/react-native-select
+44 error Darwin 15.6.0
+45 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "publish"
+46 error node v4.2.2
+47 error npm  v3.10.6
+48 error code E403
+49 error you do not have permission to publish "react-native-select". Are you logged in as the correct user? : react-native-select
+50 error If you need help, you may report this error at:
+50 error     <https://github.com/npm/npm/issues>
+51 verbose exit [ 1, true ]

@@ -1,9 +1,9 @@
 # Install
 
 ```
-npm install react-native-select  --save
+npm install react-native-selector  --save
 ```
-仓库地址： https://github.com/yylgit/react-native-select.git
+仓库地址： https://github.com/yylgit/react-native-selector.git
 
 # API
 

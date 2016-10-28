@@ -1,5 +1,5 @@
 {
-  "name": "react-native-select",
+  "name": "react-native-selector",
   "version": "1.0.1",
   "description": "select component for react-native",
   "author": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yylgit/react-native-select.git"
+    "url": "https://github.com/yylgit/react-native-selector.git"
   },
   "keywords": [
     "react-native",
