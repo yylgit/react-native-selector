@@ -114,8 +114,7 @@ const styles = StyleSheet.create({
     paddingRight: 10
   },
   selectWrapper: {
-      flexDirection: 'row',
-      zIndex: 1000
+      flexDirection: 'row'
   }
 });
 
